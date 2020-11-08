@@ -7,7 +7,8 @@
     </q-card-section>
     <q-separator />
     <q-card-section>
-      <q-form style="max-width: 300px"
+      <q-form
+        style="max-width: 300px"
         class="q-ml-sm"
         @submit="onSubmitForm"
       >
@@ -39,7 +40,8 @@
                   transition-hide="scale"
                 >
                   <q-date
-                    v-model="noticeDate" default-year-month="2020/01"
+                    v-model="noticeDate"
+                    default-year-month="2020/01"
                     mask="YYYY-MM-DD HH:mm"
                   />
                 </q-popup-proxy>
@@ -66,13 +68,16 @@
           </q-input>
         </div>
       </q-form>
+      <tip-tap />
     </q-card-section>
   </q-card>
 </template>
 
 <script>
+import TipTap from 'components/editor/TipTap'
 export default {
   name: 'RecordEdit',
+  components: { TipTap },
   data () {
     return {
       title: '',
