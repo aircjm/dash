@@ -6,9 +6,10 @@
 </template>
 
 <script>
-import { Placeholder } from 'tiptap-extensions'
+import { Placeholder, Image } from 'tiptap-extensions'
 import { QuasarTiptap, RecommendedExtensions } from 'quasar-tiptap'
 import 'quasar-tiptap/lib/index.css'
+import { uploadImage } from 'src/api/file'
 export default {
   name: 'TipTap',
   data () {
@@ -28,6 +29,21 @@ export default {
               }
               return 'Content'
             }
+          }),
+          new Image({
+            uploadRequest (file) {
+              debugger
+              // 如果接口要求 Content-Type 是 multipart/form-data，则请求体必须使用 FormData
+              const fd = new FormData()
+              fd.append('image', file)
+              // 第1个 return 是返回 Promise 对象
+              // 为什么？因为 axios 本身就是返回 Promise 对象
+              return uploadImage(fd).then(res => {
+                // 这个 return 是返回最后的结果
+                // return res.data.data.url
+                return 'https://avatars2.githubusercontent.com/u/18283183?s=460&u=8236fdf92f0582abb340087cb938322587c82e7f&v=4'
+              })
+            } // 图片的上传方法，返回一个 Promise<url>
           })
         ],
         toolbar: [ // 1.name 2.object 3.component
