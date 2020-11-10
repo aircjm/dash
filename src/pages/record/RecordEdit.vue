@@ -68,16 +68,17 @@
           </q-input>
         </div>
       </q-form>
-      <tip-tap />
+      <!--      <tip-tap />-->
+      <tiptap-editor />
     </q-card-section>
   </q-card>
 </template>
 
 <script>
-import TipTap from 'components/editor/TipTap'
+import TiptapEditor from 'components/editor/TiptapEditor'
 export default {
   name: 'RecordEdit',
-  components: { TipTap },
+  components: { TiptapEditor },
   data () {
     return {
       title: '',
